@@ -1,47 +1,37 @@
 #!/usr/bin/env bash
 
 main() {
-  echo "### Installing using configuration in a"
+  echo "### Initializing"
   cd a
-  mise trust
-  mise i
-  echo
-  echo =========================================
-  mise x -- which ansible
-  echo =========================================
-
-  echo
-  echo "### Checking ansible in b"
+  mise trust &>/dev/null
+  quiet mise i
   cd ../b
-  mise trust
-  echo
-  echo =========================================
-  mise x -- which ansible
-  echo =========================================
+  mise trust &>/dev/null
+  quiet mise i
 
   echo
-  echo "### Force installing ansible in b"
-  mise i -f ansible
-  echo
-  echo =========================================
-  mise x -- which ansible
-  echo =========================================
-
-  echo
-  echo "### Checking ansible in a"
+  echo "### Installing using configuration in a."
+  echo "### The ansible command becomes available."
   cd ../a
-  echo
-  echo =========================================
-  mise x -- which ansible
-  echo =========================================
+  loud mise i -f ansible
+  loud mise x -- type ansible
 
   echo
-  echo "### Force installing ansible in a"
-  mise i -f ansible
+  echo "### Installing using configuration in b."
+  echo "### The ansible command isn't available."
+  cd ../b
+  loud mise i -f ansible
+  loud mise x -- type ansible
+}
+
+quiet() {
+  local output
+  output=$("$@" 2>&1) || { echo "$output" >&2; exit 1; }
+}
+
+loud() {
   echo
-  echo =========================================
-  mise x -- which ansible
-  echo =========================================
+  (set -x; "$@")
 }
 
 main "$@"; exit
