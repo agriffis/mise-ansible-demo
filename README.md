@@ -1,11 +1,8 @@
-
 ```
-▶ ./run-me.bash
+### Initializating good
+### Initializating bad
 
-### Initializing
-
-### Installing using configuration in a.
-### The ansible command becomes available.
+### Trying good
 
 + mise i -f ansible
 mise ansible@13.3.0               [1/4] uninstall
@@ -18,7 +15,7 @@ creating shared libraries...
 upgrading shared libraries...
 installing ansible from spec 'ansible==13.3.0'...
 done! ✨ 🌟 ✨
-mise ansible@13.3.0               [2/4]   installed package ansible 13.3.0, installed using Python 3.14.2
+mise ansible@13.3.0               [2/4]   installed package ansible 13.3.0, installed using Python 3.14.3
 mise ansible@13.3.0               [2/4]   These apps are now globally available
 mise ansible@13.3.0               [2/4]     - ansible
 mise ansible@13.3.0               [2/4]     - ansible-community
@@ -36,8 +33,7 @@ mise ansible@13.3.0             ✓ installed
 + mise x -- type ansible
 ansible is /home/aron/.local/share/mise/installs/ansible/13.3.0/bin/ansible
 
-### Installing using configuration in b.
-### The ansible command isn't available.
+### Trying bad
 
 + mise i -f ansible
 mise ansible@13.3.0               [1/4] uninstall
@@ -45,8 +41,8 @@ mise ansible@13.3.0               [1/4] remove ~/.local/share/mise/installs/ansi
 mise ansible@13.3.0               [1/4] remove ~/.cache/mise/ansible/13.3.0
 mise ansible@13.3.0               [2/4] install
 mise ansible@13.3.0               [2/4] uv tool install ansible==13.3.0
-Resolved 10 packages in 4ms
-Installed 10 packages in 348ms
+Resolved 10 packages in 3ms
+Installed 10 packages in 341ms
  + ansible==13.3.0
  + ansible-core==2.20.2
  + cffi==2.0.0

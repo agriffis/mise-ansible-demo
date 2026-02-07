@@ -1,27 +1,24 @@
 #!/usr/bin/env bash
 
 main() {
-  echo "### Initializing"
-  cd a
-  mise trust &>/dev/null
-  quiet mise i
-  cd ../b
-  mise trust &>/dev/null
-  quiet mise i
+  local d dirs=( good bad )
 
-  echo
-  echo "### Installing using configuration in a."
-  echo "### The ansible command becomes available."
-  cd ../a
-  loud mise i -f ansible
-  loud mise x -- type ansible
+  for d in "${dirs[@]}"; do
+    echo "### Initializating $d"
+    cd "$d"
+    mise trust &>/dev/null
+    quiet mise i
+    cd ..
+  done
 
-  echo
-  echo "### Installing using configuration in b."
-  echo "### The ansible command isn't available."
-  cd ../b
-  loud mise i -f ansible
-  loud mise x -- type ansible
+  for d in "${dirs[@]}"; do
+    echo
+    echo "### Trying $d"
+    cd "$d"
+    loud mise i -f ansible
+    loud mise x -- type ansible
+    cd ..
+  done
 }
 
 quiet() {
