@@ -1,4 +1,3 @@
 [tools]
 ansible = { version = "latest" }
 pipx = "latest"
-python = "latest"
